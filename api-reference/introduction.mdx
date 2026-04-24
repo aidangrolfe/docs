@@ -1,33 +1,73 @@
 ---
 title: 'Introduction'
-description: 'Example section for showcasing API endpoints'
+description: 'TxODDS off-Chain API for Hybrid on-chain/off-chain Oracle'
 ---
 
-<Note>
-  If you're not looking to build API reference documentation, you can delete
-  this section by removing the api-reference folder.
-</Note>
+## Overview
 
-## Welcome
+The TxODDS Oracle API provides access and trading based on real-time and historical sports data from the **TxODDS Oracle**.
 
-There are two ways to build API documentation: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [MDX components](https://mintlify.com/docs/api-playground/mdx/configuration). For the starter kit, we are using the following OpenAPI specification.
+This API supports two key use cases:
 
-<Card
-  title="Plant Store Endpoints"
-  icon="leaf"
-  href="https://github.com/mintlify/starter/blob/main/api-reference/openapi.json"
->
-  View the OpenAPI specification file
-</Card>
+1. **Data Access:** Make proprietary TxODDS available for any funded blockchain users by linking on-chain `subscribe` transactions with issued time-limited API tokens.
+   - Data is canonicalised so that all fixtures, odds, or scores are provably unique—confirmed by on-chain cryptographic proofs.
+   - Data is delivered in request-response or streaming form.
+
+2. **Prediction Trading:** Direct and flexible trading model allowing users to:
+   - Submit cryptographically signed College Football and Basketball prediction offers
+   - Receive notifications via the Trading stream
+   - Accept and cryptographically sign offers (creating fully-secure on-chain escrow with matching token funds)
+   - Settle trades with cryptographic proof, releasing escrow funds to the winner's account
+
+## Key Features
+
+- **Historical Snapshots:** Query the latest state of any market at a specific point in time
+- **Historical Updates:** Query updates for any given key such as fixture or market for a given time period
+- **Live Data Streams:** Real-time, low-latency data feeds using Server-Sent Events (SSE)
+- **On-Chain Validation:** Retrieve Merkle proofs to cryptographically verify data against on-chain roots
+- **Peer-to-peer Prediction Trading:** Offer and accept trades on outcome predictions in a flexible format
+- **Non-custodial Order Book Trading:** Trade against other liquidity orders using a hybrid off-chain/on-chain model
+
+## Getting Started
+
+### Prerequisites
+
+- A Solana wallet
+- SOL tokens for purchasing TxODDS Subscription tokens
+- Access to the [tx-oracle Solana smart contract](https://github.com/txodds/tx-on-chain)
+
+### Access Flow
+
+1. **Purchase Subscription Tokens:** Buy TxODDS Subscription tokens for SOL at a fixed rate via the TxODDS website or programmatically
+2. **Stake Tokens:** Call the `stake` instruction on tx-oracle to stake tokens to the program
+3. **Get Guest Token:** As a guest, call `/guest/start` to receive an anonymous JWT token
+4. **Encrypt Token:** Encrypt the JWT using a single-use symmetric key
+5. **Subscribe On-Chain:** Pass the encrypted token to the `subscribe` instruction, which locks the required stake
+6. **Activate Subscription:** Call `/token/activate` to obtain an API token with set expiration
+7. **Access API:** Use the API token to access all documented endpoints while the subscription is valid
+8. **Unstake:** After expiration, call `unstake` to reclaim staked tokens
+9. **Sell Tokens (Optional):** Sell unlocked subscription tokens back using `sell_subscription_token`
 
 ## Authentication
 
-All API endpoints are authenticated using Bearer tokens and picked up from the specification file.
+All API endpoints (except guest endpoints) require authentication using Bearer tokens. There are two types of tokens:
 
-```json
-"security": [
-  {
-    "bearerAuth": []
-  }
-]
+- **Guest JWT:** Short-lived token for initial authentication (obtained via `/guest/start`)
+- **API Token:** Long-lived token for accessing protected endpoints (obtained via `/token/activate`)
+
+Include your token in the Authorization header:
+
 ```
+Authorization: Bearer YOUR_TOKEN_HERE
+```
+
+## Base URL
+
+```
+https://oracle.txodds.com/api
+```
+
+## Resources
+
+- [On-chain examples and documentation](https://github.com/txodds/tx-on-chain)
+- [OpenAPI Specification](/openapi.yaml)

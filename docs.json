@@ -1,13 +1,14 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "TxODDS Oracle API",
   "colors": {
     "primary": "#16A34A",
     "light": "#07C983",
     "dark": "#15803D"
   },
   "favicon": "/favicon.svg",
+  "openapi": ["openapi.yaml"],
   "navigation": {
     "tabs": [
       {
@@ -51,18 +52,60 @@
         "tab": "API reference",
         "groups": [
           {
-            "group": "API documentation",
+            "group": "Getting started",
             "pages": [
               "api-reference/introduction"
             ]
           },
           {
-            "group": "Endpoint examples",
+            "group": "Authentication",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "POST /guest/start",
+              "GET /token/activate",
+              "POST /token/extend/{newEndTs}"
+            ]
+          },
+          {
+            "group": "Fixtures",
+            "pages": [
+              "GET /guest/fixtures/snapshot",
+              "GET /fixtures/snapshot",
+              "GET /fixtures/updates/{epochDay}/{hourOfDay}",
+              "GET /fixtures/validation",
+              "GET /fixtures/batch-validation"
+            ]
+          },
+          {
+            "group": "Odds",
+            "pages": [
+              "GET /guest/odds/snapshot/{fixtureId}",
+              "GET /guest/odds/stream",
+              "GET /odds/snapshot/{fixtureId}",
+              "GET /odds/updates/{fixtureId}",
+              "GET /odds/updates/{epochDay}/{hourOfDay}/{interval}",
+              "GET /odds/stream",
+              "GET /odds/validation"
+            ]
+          },
+          {
+            "group": "Scores",
+            "pages": [
+              "GET /scores/snapshot/{fixtureId}",
+              "GET /scores/updates/{fixtureId}",
+              "GET /scores/updates/{epochDay}/{hourOfDay}/{interval}",
+              "GET /scores/stream",
+              "GET /scores/stat-validation"
+            ]
+          },
+          {
+            "group": "Trading",
+            "pages": [
+              "POST /trading/offer",
+              "POST /trading/accept",
+              "POST /trading/sign",
+              "GET /trading/stream",
+              "GET /trading/offer",
+              "POST /trading/offer/cancel"
             ]
           }
         ]
