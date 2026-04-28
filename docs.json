@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "TxODDS Oracle API",
+  "name": "TxLine Documentation",
   "colors": {
     "primary": "#16A34A",
     "light": "#07C983",
@@ -34,15 +34,17 @@
           {
             "group": "Scores",
             "pages": [
+              "documentation/scores/overview",
               "documentation/scores/football-feed",
               "documentation/scores/basketball-feed"
             ]
           },
           {
-            "group": "Reference",
+            "group": "Solana Programs",
             "pages": [
-              "documentation/reference/data-specifications",
-              "documentation/reference/idls"
+              "documentation/programs/addresses",
+              "documentation/programs/mainnet",
+              "documentation/programs/devnet"
             ]
           },
           {
@@ -114,12 +116,7 @@
         "label": "Support",
         "href": "mailto:hi@mintlify.com"
       }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
-    }
+    ]
   },
   "contextual": {
     "options": [
