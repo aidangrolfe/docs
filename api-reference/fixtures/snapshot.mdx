@@ -18,52 +18,69 @@ Get the latest snapshot of fixtures for authenticated users.
 
 ## Response
 
-<ResponseField name="data" type="array<Fixture>">
-  Array of Fixture objects containing fixture information.
-</ResponseField>
+Returns an array of Fixture objects.
 
-### Fixture Object
+**Example:**
+```json
+[
+  {
+    "Ts": 1234567890,
+    "StartTime": 1234567890,
+    "Competition": "NCAA Football",
+    "CompetitionId": 1,
+    "FixtureGroupId": 100,
+    "Participant1Id": 50,
+    "Participant1": "Team A",
+    "Participant2Id": 51,
+    "Participant2": "Team B",
+    "FixtureId": 1001,
+    "Participant1IsHome": true
+  }
+]
+```
 
-<ResponseField name="Ts" type="int64">
+### Fixture Object Properties
+
+<ResponseField name="Ts" type="int64" required>
   Timestamp of the fixture data
 </ResponseField>
 
-<ResponseField name="StartTime" type="int64">
+<ResponseField name="StartTime" type="int64" required>
   Fixture start time timestamp
 </ResponseField>
 
-<ResponseField name="Competition" type="string">
+<ResponseField name="Competition" type="string" required>
   Competition name
 </ResponseField>
 
-<ResponseField name="CompetitionId" type="int32">
+<ResponseField name="CompetitionId" type="int32" required>
   Competition identifier
 </ResponseField>
 
-<ResponseField name="FixtureGroupId" type="int32">
+<ResponseField name="FixtureGroupId" type="int32" required>
   Fixture group identifier
 </ResponseField>
 
-<ResponseField name="Participant1Id" type="int32">
+<ResponseField name="Participant1Id" type="int32" required>
   First participant identifier
 </ResponseField>
 
-<ResponseField name="Participant1" type="string">
+<ResponseField name="Participant1" type="string" required>
   First participant name
 </ResponseField>
 
-<ResponseField name="Participant2Id" type="int32">
+<ResponseField name="Participant2Id" type="int32" required>
   Second participant identifier
 </ResponseField>
 
-<ResponseField name="Participant2" type="string">
+<ResponseField name="Participant2" type="string" required>
   Second participant name
 </ResponseField>
 
-<ResponseField name="FixtureId" type="int64">
+<ResponseField name="FixtureId" type="int64" required>
   Unique fixture identifier
 </ResponseField>
 
-<ResponseField name="Participant1IsHome" type="boolean">
+<ResponseField name="Participant1IsHome" type="boolean" required>
   Indicates if participant 1 is the home team
 </ResponseField>

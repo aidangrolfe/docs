@@ -22,46 +22,78 @@ published by the TxODDS Oracle as confirmed by the on-chain Merkle root.
 
 ## Response
 
-<ResponseField name="odds" type="Odds">
+Returns an OddsValidation object.
+
+<ResponseField name="odds" type="Odds" required>
   The odds record being validated
 </ResponseField>
 
-<ResponseField name="summary" type="OddsBatchSummary">
+<ResponseField name="summary" type="OddsBatchSummary" required>
   Summary information about the odds batch
 </ResponseField>
 
-<ResponseField name="subTreeProof" type="array">
+<ResponseField name="subTreeProof" type="array" required>
   Merkle proof nodes for the sub-tree
 </ResponseField>
 
-<ResponseField name="mainTreeProof" type="array">
+<ResponseField name="mainTreeProof" type="array" required>
   Merkle proof nodes for the main tree
+</ResponseField>
+
+### Odds Object
+
+<ResponseField name="FixtureId" type="int64" required>
+  Fixture identifier
+</ResponseField>
+
+<ResponseField name="MessageId" type="string" required>
+  Unique message identifier for the odds update
+</ResponseField>
+
+<ResponseField name="Ts" type="int64" required>
+  Timestamp of the odds update
+</ResponseField>
+
+<ResponseField name="Bookmaker" type="string" required>
+  Bookmaker name
+</ResponseField>
+
+<ResponseField name="BookmakerId" type="int32" required>
+  Bookmaker identifier
+</ResponseField>
+
+<ResponseField name="SuperOddsType" type="string" required>
+  Type of odds market
+</ResponseField>
+
+<ResponseField name="InRunning" type="boolean" required>
+  Indicates if the fixture is currently in play
 </ResponseField>
 
 ### OddsBatchSummary Object
 
-<ResponseField name="fixtureId" type="int64">
+<ResponseField name="fixtureId" type="int64" required>
   Fixture identifier for the batch
 </ResponseField>
 
-<ResponseField name="updateStats" type="OddsUpdateStats">
+<ResponseField name="updateStats" type="OddsUpdateStats" required>
   Statistics about updates in this batch
 </ResponseField>
 
-<ResponseField name="oddsSubTreeRoot" type="binary">
+<ResponseField name="oddsSubTreeRoot" type="binary" required>
   Root hash of the odds sub-tree
 </ResponseField>
 
 ### OddsUpdateStats Object
 
-<ResponseField name="updateCount" type="int32">
+<ResponseField name="updateCount" type="int32" required>
   Number of updates in the batch
 </ResponseField>
 
-<ResponseField name="minTimestamp" type="int64">
+<ResponseField name="minTimestamp" type="int64" required>
   Earliest update timestamp
 </ResponseField>
 
-<ResponseField name="maxTimestamp" type="int64">
+<ResponseField name="maxTimestamp" type="int64" required>
   Latest update timestamp
 </ResponseField>

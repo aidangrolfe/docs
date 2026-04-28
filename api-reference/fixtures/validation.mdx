@@ -22,18 +22,56 @@ by TxODDS as confirmed by the published Merkle root. This on-chain transaction r
 
 ## Response
 
-<ResponseField name="snapshot" type="Fixture">
+Returns a FixtureValidation object.
+
+<ResponseField name="snapshot" type="Fixture" required>
   The fixture snapshot data
 </ResponseField>
 
-<ResponseField name="summary" type="FixtureBatchSummary">
+<ResponseField name="summary" type="FixtureBatchSummary" required>
   Summary information about the fixture batch
 </ResponseField>
 
-<ResponseField name="subTreeProof" type="array">
+<ResponseField name="subTreeProof" type="array" required>
   Merkle proof nodes for the sub-tree
 </ResponseField>
 
-<ResponseField name="mainTreeProof" type="array">
+<ResponseField name="mainTreeProof" type="array" required>
   Merkle proof nodes for the main tree
+</ResponseField>
+
+### FixtureBatchSummary Object
+
+<ResponseField name="fixtureId" type="int64" required>
+  Fixture identifier
+</ResponseField>
+
+<ResponseField name="competitionId" type="int32" required>
+  Competition identifier
+</ResponseField>
+
+<ResponseField name="competition" type="string" required>
+  Competition name
+</ResponseField>
+
+<ResponseField name="updateStats" type="FixtureUpdateStats" required>
+  Statistics about updates in this batch
+</ResponseField>
+
+<ResponseField name="updateSubTreeRoot" type="binary" required>
+  Root hash of the update sub-tree
+</ResponseField>
+
+### FixtureUpdateStats Object
+
+<ResponseField name="updateCount" type="int32" required>
+  Number of updates in the batch
+</ResponseField>
+
+<ResponseField name="minTimestamp" type="int64" required>
+  Earliest update timestamp
+</ResponseField>
+
+<ResponseField name="maxTimestamp" type="int64" required>
+  Latest update timestamp
 </ResponseField>

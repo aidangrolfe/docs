@@ -34,31 +34,31 @@ Each data event contains:
 
 ### Odds Object Structure
 
-<ResponseField name="FixtureId" type="int64">
+<ResponseField name="FixtureId" type="int64" required>
   Fixture identifier
 </ResponseField>
 
-<ResponseField name="MessageId" type="string">
+<ResponseField name="MessageId" type="string" required>
   Unique message identifier for the odds update
 </ResponseField>
 
-<ResponseField name="Ts" type="int64">
+<ResponseField name="Ts" type="int64" required>
   Timestamp of the odds update
 </ResponseField>
 
-<ResponseField name="Bookmaker" type="string">
+<ResponseField name="Bookmaker" type="string" required>
   Bookmaker name
 </ResponseField>
 
-<ResponseField name="BookmakerId" type="int32">
+<ResponseField name="BookmakerId" type="int32" required>
   Bookmaker identifier
 </ResponseField>
 
-<ResponseField name="SuperOddsType" type="string">
+<ResponseField name="SuperOddsType" type="string" required>
   Type of odds market
 </ResponseField>
 
-<ResponseField name="InRunning" type="boolean">
+<ResponseField name="InRunning" type="boolean" required>
   Indicates if the fixture is currently in play
 </ResponseField>
 
@@ -75,3 +75,13 @@ Each data event contains:
 Heartbeat events keep the connection alive and contain:
 - **event**: Set to `heartbeat`
 - **data**: JSON object like `{"Ts": 12345}`
+
+<CodeGroup>
+```text Example Stream Events
+id: 1704067200000:0
+data: {"FixtureId":1001,"MessageId":"msg_12345","Ts":1704067200000,"Bookmaker":"BetMGM","BookmakerId":5,"SuperOddsType":"Moneyline","InRunning":false,"PriceNames":["Alabama","Georgia"],"Prices":[150,200]}
+
+event: heartbeat
+data: {"Ts": 1704067260000}
+```
+</CodeGroup>

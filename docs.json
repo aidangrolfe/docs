@@ -8,41 +8,26 @@
     "dark": "#15803D"
   },
   "favicon": "/favicon.svg",
+  "api": {
+    "baseUrl": "https://oracle.txodds.com"
+  },
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Documentation",
         "groups": [
           {
             "group": "Getting started",
             "pages": [
-              "index",
-              "quickstart",
-              "development"
+              "documentation/introduction",
+              "documentation/quickstart",
+              "documentation/development"
             ]
           },
           {
-            "group": "Customization",
+            "group": "Legal",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
-            ]
-          },
-          {
-            "group": "Writing content",
-            "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
-            ]
-          },
-          {
-            "group": "AI tools",
-            "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
+              "documentation/terms-and-conditions"
             ]
           }
         ]
@@ -50,12 +35,6 @@
       {
         "tab": "API reference",
         "groups": [
-          {
-            "group": "Getting started",
-            "pages": [
-              "api-reference/introduction"
-            ]
-          },
           {
             "group": "Authentication",
             "pages": [
@@ -95,35 +74,10 @@
               "api-reference/scores/stream",
               "api-reference/scores/stat-validation"
             ]
-          },
-          {
-            "group": "Trading",
-            "pages": [
-              "api-reference/trading/offer-create",
-              "api-reference/trading/accept",
-              "api-reference/trading/sign",
-              "api-reference/trading/stream",
-              "api-reference/trading/offer-get",
-              "api-reference/trading/offer-cancel"
-            ]
           }
         ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
+    ]
   },
   "logo": {
     "light": "/logo/light.svg",

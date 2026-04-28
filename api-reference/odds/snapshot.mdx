@@ -20,33 +20,31 @@ Return the latest odds for each unique market line for a given fixture. If the '
 
 ## Response
 
-<ResponseField name="data" type="array<Odds>">
-  Array of Odds objects for the fixture
-</ResponseField>
+Returns an array of Odds objects for the fixture.
 
-### Odds Object
+### Odds Object Properties
 
-<ResponseField name="FixtureId" type="int64">
+<ResponseField name="FixtureId" type="int64" required>
   Fixture identifier
 </ResponseField>
 
-<ResponseField name="MessageId" type="string">
+<ResponseField name="MessageId" type="string" required>
   Unique message identifier for the odds update
 </ResponseField>
 
-<ResponseField name="Ts" type="int64">
+<ResponseField name="Ts" type="int64" required>
   Timestamp of the odds update
 </ResponseField>
 
-<ResponseField name="Bookmaker" type="string">
+<ResponseField name="Bookmaker" type="string" required>
   Bookmaker name
 </ResponseField>
 
-<ResponseField name="BookmakerId" type="int32">
+<ResponseField name="BookmakerId" type="int32" required>
   Bookmaker identifier
 </ResponseField>
 
-<ResponseField name="SuperOddsType" type="string">
+<ResponseField name="SuperOddsType" type="string" required>
   Type of odds market
 </ResponseField>
 
@@ -54,7 +52,7 @@ Return the latest odds for each unique market line for a given fixture. If the '
   Current state of the game
 </ResponseField>
 
-<ResponseField name="InRunning" type="boolean">
+<ResponseField name="InRunning" type="boolean" required>
   Indicates if the fixture is currently in play
 </ResponseField>
 
@@ -73,3 +71,24 @@ Return the latest odds for each unique market line for a given fixture. If the '
 <ResponseField name="Prices" type="array<int32>">
   Odds values for each outcome
 </ResponseField>
+
+<CodeGroup>
+```json Example Response
+[
+  {
+    "FixtureId": 1001,
+    "MessageId": "msg_12345",
+    "Ts": 1704067200000,
+    "Bookmaker": "BetMGM",
+    "BookmakerId": 5,
+    "SuperOddsType": "Moneyline",
+    "GameState": "PreMatch",
+    "InRunning": false,
+    "MarketParameters": "",
+    "MarketPeriod": "FullTime",
+    "PriceNames": ["Alabama", "Georgia"],
+    "Prices": [150, 200]
+  }
+]
+```
+</CodeGroup>

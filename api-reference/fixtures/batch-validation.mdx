@@ -23,28 +23,30 @@ A user can take this proof and the metadata (which includes the final Merkle roo
 
 ## Response
 
-<ResponseField name="metadata" type="BatchMetadata">
+Returns a FixtureBatchValidation object.
+
+<ResponseField name="metadata" type="BatchMetadata" required>
   Metadata for the hourly batch
 </ResponseField>
 
-<ResponseField name="proof" type="array">
+<ResponseField name="proof" type="array" required>
   Merkle proof nodes for validating the batch
 </ResponseField>
 
 ### BatchMetadata Object
 
-<ResponseField name="totalUpdateCount" type="int32">
+<ResponseField name="totalUpdateCount" type="int32" required>
   Total number of updates in the batch
 </ResponseField>
 
-<ResponseField name="numUniqueFixtures" type="int32">
+<ResponseField name="numUniqueFixtures" type="int32" required>
   Number of unique fixtures in the batch
 </ResponseField>
 
-<ResponseField name="overallBatchStartTs" type="int64">
+<ResponseField name="overallBatchStartTs" type="int64" required>
   Start timestamp of the batch
 </ResponseField>
 
-<ResponseField name="overallBatchEndTs" type="int64">
+<ResponseField name="overallBatchEndTs" type="int64" required>
   End timestamp of the batch
 </ResponseField>
