@@ -1,0 +1,75 @@
+---
+title: "Get snapshots of the latest odds for a fixture"
+api: "GET /odds/snapshot/{fixtureId}"
+description: "Get snapshots of the latest odds for a fixture"
+---
+
+Return the latest odds for each unique market line for a given fixture. If the 'asOf' parameter is provided, the snapshots are taken at that point in time from historical data. Otherwise, it returns the current live snapshot.
+
+## Path Parameters
+
+<ParamField path="fixtureId" type="int64" required>
+  The ID of the fixture
+</ParamField>
+
+## Query Parameters
+
+<ParamField query="asOf" type="int64">
+  Optional Unix timestamp (ms) for a historical snapshot. If omitted, returns the live snapshot.
+</ParamField>
+
+## Response
+
+<ResponseField name="data" type="array<Odds>">
+  Array of Odds objects for the fixture
+</ResponseField>
+
+### Odds Object
+
+<ResponseField name="FixtureId" type="int64">
+  Fixture identifier
+</ResponseField>
+
+<ResponseField name="MessageId" type="string">
+  Unique message identifier for the odds update
+</ResponseField>
+
+<ResponseField name="Ts" type="int64">
+  Timestamp of the odds update
+</ResponseField>
+
+<ResponseField name="Bookmaker" type="string">
+  Bookmaker name
+</ResponseField>
+
+<ResponseField name="BookmakerId" type="int32">
+  Bookmaker identifier
+</ResponseField>
+
+<ResponseField name="SuperOddsType" type="string">
+  Type of odds market
+</ResponseField>
+
+<ResponseField name="GameState" type="string">
+  Current state of the game
+</ResponseField>
+
+<ResponseField name="InRunning" type="boolean">
+  Indicates if the fixture is currently in play
+</ResponseField>
+
+<ResponseField name="MarketParameters" type="string">
+  Parameters for the market (e.g., handicap, total)
+</ResponseField>
+
+<ResponseField name="MarketPeriod" type="string">
+  Period the market applies to
+</ResponseField>
+
+<ResponseField name="PriceNames" type="array<string>">
+  Names of the prices/outcomes
+</ResponseField>
+
+<ResponseField name="Prices" type="array<int32>">
+  Odds values for each outcome
+</ResponseField>

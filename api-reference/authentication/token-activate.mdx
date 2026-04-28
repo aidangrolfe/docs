@@ -1,0 +1,35 @@
+---
+title: "Activate and retrieve a new API token"
+api: "GET /token/activate"
+description: "Activate and retrieve a new API token"
+---
+
+This endpoint activates a user's subscription and issues a long-lived API token.
+It requires proof of a successful on-chain subscription payment, which is provided via a transaction signature ('sig').
+The user's current session JWT is cryptographically verified against a JWT encrypted with a symmetric key and then stored on-chain within that transaction.
+The `key` and `iv` parameters are used to decrypt this on-chain proof.
+If all validations pass, a new API token is generated, persisted, and returned to the user.
+
+## Query Parameters
+
+<ParamField query="sig" type="string" required>
+  The Solana transaction signature that confirms the subscription payment.
+
+  Example: `5kb6gnsSu1inDF9nCVV3WcgKryyBFGFkrYS28Sp1avS8mq6Xcw6iq3yzkBTjmq8bGptgqYTXPmjyWECzKzUxYG3C`
+</ParamField>
+
+<ParamField query="key" type="string" required>
+  The Base64Url-encoded symmetric key used for payload encryption.
+</ParamField>
+
+<ParamField query="iv" type="string" required>
+  The Base64Url-encoded initialization vector (IV) for the encryption.
+</ParamField>
+
+## Response
+
+<ResponseField name="token" type="string">
+  A newly generated, long-lived API token for the user.
+
+  Example: `txoracle_api_123abc456def...`
+</ResponseField>

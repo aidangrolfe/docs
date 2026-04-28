@@ -1,0 +1,67 @@
+---
+title: "Get a Merkle proof for a specific odds update"
+api: "GET /odds/validation"
+description: "Get a Merkle proof for a specific odds update"
+---
+
+Each odds update is part of a batch whose state is committed to the blockchain via a Merkle root.
+This endpoint returns the cryptographic proof for a single odds update, identified by its unique messageId.
+The proof consists of the hashes along the branch of the Merkle tree, which can be used to reconstruct the root.
+A user can then use this proof and the odds record in an on-chain transaction to cryptographically verify that the odds update was
+published by the TxODDS Oracle as confirmed by the on-chain Merkle root.
+
+## Query Parameters
+
+<ParamField query="messageId" type="string" required>
+  The unique message ID of the odds update to validate.
+</ParamField>
+
+<ParamField query="ts" type="int64" required>
+  Timestamp of the odds message.
+</ParamField>
+
+## Response
+
+<ResponseField name="odds" type="Odds">
+  The odds record being validated
+</ResponseField>
+
+<ResponseField name="summary" type="OddsBatchSummary">
+  Summary information about the odds batch
+</ResponseField>
+
+<ResponseField name="subTreeProof" type="array">
+  Merkle proof nodes for the sub-tree
+</ResponseField>
+
+<ResponseField name="mainTreeProof" type="array">
+  Merkle proof nodes for the main tree
+</ResponseField>
+
+### OddsBatchSummary Object
+
+<ResponseField name="fixtureId" type="int64">
+  Fixture identifier for the batch
+</ResponseField>
+
+<ResponseField name="updateStats" type="OddsUpdateStats">
+  Statistics about updates in this batch
+</ResponseField>
+
+<ResponseField name="oddsSubTreeRoot" type="binary">
+  Root hash of the odds sub-tree
+</ResponseField>
+
+### OddsUpdateStats Object
+
+<ResponseField name="updateCount" type="int32">
+  Number of updates in the batch
+</ResponseField>
+
+<ResponseField name="minTimestamp" type="int64">
+  Earliest update timestamp
+</ResponseField>
+
+<ResponseField name="maxTimestamp" type="int64">
+  Latest update timestamp
+</ResponseField>

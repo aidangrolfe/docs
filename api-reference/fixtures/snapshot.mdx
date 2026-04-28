@@ -1,0 +1,69 @@
+---
+title: "Get the latest snapshot of fixtures"
+api: "GET /fixtures/snapshot"
+description: "Get the latest snapshot of fixtures"
+---
+
+Get the latest snapshot of fixtures for authenticated users.
+
+## Query Parameters
+
+<ParamField query="startEpochDay" type="integer">
+  Optional. The day the fixtures start. Defaults to the current day in UTC.
+</ParamField>
+
+<ParamField query="competitionId" type="int32">
+  Optional. Filter by a specific competition ID.
+</ParamField>
+
+## Response
+
+<ResponseField name="data" type="array<Fixture>">
+  Array of Fixture objects containing fixture information.
+</ResponseField>
+
+### Fixture Object
+
+<ResponseField name="Ts" type="int64">
+  Timestamp of the fixture data
+</ResponseField>
+
+<ResponseField name="StartTime" type="int64">
+  Fixture start time timestamp
+</ResponseField>
+
+<ResponseField name="Competition" type="string">
+  Competition name
+</ResponseField>
+
+<ResponseField name="CompetitionId" type="int32">
+  Competition identifier
+</ResponseField>
+
+<ResponseField name="FixtureGroupId" type="int32">
+  Fixture group identifier
+</ResponseField>
+
+<ResponseField name="Participant1Id" type="int32">
+  First participant identifier
+</ResponseField>
+
+<ResponseField name="Participant1" type="string">
+  First participant name
+</ResponseField>
+
+<ResponseField name="Participant2Id" type="int32">
+  Second participant identifier
+</ResponseField>
+
+<ResponseField name="Participant2" type="string">
+  Second participant name
+</ResponseField>
+
+<ResponseField name="FixtureId" type="int64">
+  Unique fixture identifier
+</ResponseField>
+
+<ResponseField name="Participant1IsHome" type="boolean">
+  Indicates if participant 1 is the home team
+</ResponseField>

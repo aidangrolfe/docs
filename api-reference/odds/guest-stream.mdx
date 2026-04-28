@@ -1,0 +1,71 @@
+---
+title: "Get a real-time Server-Sent Events stream of free odds"
+api: "GET /guest/odds/stream"
+description: "Get a real-time Server-Sent Events stream of free odds"
+---
+
+A long-lived, public stream of odds updates delayed by 60 seconds for freely available competitions.
+
+The stream consists of data messages with:
+- An `id` in the format `timestamp:index`.
+- `data` containing a JSON object for a single Odds record.
+
+This endpoint is intended for guest users and only includes odds from competitions marked as free by the system.
+
+## Query Parameters
+
+<ParamField query="fixtureId" type="int64">
+  Optional. Filter the event stream for a single fixture ID.
+</ParamField>
+
+## Headers
+
+<ParamField header="Last-Event-ID" type="string">
+  Optional. The ID of the last event received, in 'timestamp:index' format. If provided, the server will attempt to send historical data since this event before joining the live stream.
+</ParamField>
+
+## Response
+
+Returns a Server-Sent Events (SSE) stream with content type `text/event-stream`.
+
+Each event contains:
+- **id**: Event identifier in format `timestamp:index`
+- **data**: JSON object containing an Odds record
+
+### Odds Object Structure
+
+<ResponseField name="FixtureId" type="int64">
+  Fixture identifier
+</ResponseField>
+
+<ResponseField name="MessageId" type="string">
+  Unique message identifier for the odds update
+</ResponseField>
+
+<ResponseField name="Ts" type="int64">
+  Timestamp of the odds update
+</ResponseField>
+
+<ResponseField name="Bookmaker" type="string">
+  Bookmaker name
+</ResponseField>
+
+<ResponseField name="BookmakerId" type="int32">
+  Bookmaker identifier
+</ResponseField>
+
+<ResponseField name="SuperOddsType" type="string">
+  Type of odds market
+</ResponseField>
+
+<ResponseField name="InRunning" type="boolean">
+  Indicates if the fixture is currently in play
+</ResponseField>
+
+<ResponseField name="PriceNames" type="array<string>">
+  Names of the prices/outcomes
+</ResponseField>
+
+<ResponseField name="Prices" type="array<int32>">
+  Odds values for each outcome
+</ResponseField>

@@ -1,0 +1,74 @@
+---
+title: "Get a real-time Server-Sent Events stream of trading events"
+api: "GET /trading/stream"
+description: "Get a real-time Server-Sent Events stream of trading events"
+---
+
+Establishes a long-lived, authenticated Server-Sent Events (SSE) stream for trading.
+
+The `event` field of the SSE message will identify the message type, and the `data` field will be a JSON object corresponding to one of the following schemas:
+
+- **`NewOffer`**: Broadcast to all users when a new trade is proposed.
+- **`SigningRequest`**: Sent privately to the specific traders involved in a matched trade, prompting them to sign.
+- **`TradeMatched`**: Sent privately to the two traders after their trade is successfully created on-chain.
+- **`Heartbeat`**: Sent periodically to keep the connection alive.
+
+## Headers
+
+<ParamField header="Last-Event-ID" type="string">
+  Optional. The ID of the last event received, to resume the stream from that point.
+</ParamField>
+
+## Response
+
+Returns a Server-Sent Events (SSE) stream with content type `text/event-stream`.
+
+### Event Types
+
+#### NewOffer Event
+
+Broadcast when a new trade offer is created.
+
+<ResponseField name="event" type="string">
+  Event type: `NewOffer`
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  Contains the complete Offer object
+</ResponseField>
+
+#### SigningRequest Event
+
+Sent to specific traders when they need to sign a trade transaction.
+
+<ResponseField name="event" type="string">
+  Event type: `SigningRequest`
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  Contains trade ID, transaction data, and signing instructions
+</ResponseField>
+
+#### TradeMatched Event
+
+Sent to both traders after a trade is successfully created on-chain.
+
+<ResponseField name="event" type="string">
+  Event type: `TradeMatched`
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  Contains trade details and on-chain transaction signature
+</ResponseField>
+
+#### Heartbeat Event
+
+Periodic keep-alive messages.
+
+<ResponseField name="event" type="string">
+  Event type: `heartbeat`
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  Contains timestamp
+</ResponseField>

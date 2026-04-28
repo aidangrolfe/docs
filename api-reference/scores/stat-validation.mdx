@@ -1,0 +1,69 @@
+---
+title: "Get a three-stage Merkle proof for a single score statistic"
+api: "GET /scores/stat-validation"
+description: "Get a three-stage Merkle proof for a single score statistic"
+---
+
+This endpoint provides a deep cryptographic proof for one or two statistics within a single scores update. The TxODDS Oracle's data is structured in a three-level Merkle hierarchy:
+
+1. A main batch contains summaries for multiple fixtures.
+2. Each fixture summary is the root of a sub-tree of all score update events for that fixture.
+3. Each score update event is the root of a sub-tree of all the individual statistics it contains.
+
+This endpoint returns the full set of proofs needed to connect the stat(s) all the way to the main batch root published on-chain.
+To request a proof for a second stat (for use in two-stat predicates like comparing home vs. away scores), include the optional `statKey2` query parameter.
+With the returned data in hand, the user can execute an on-chain transaction to validate that a supplied `TraderPredicate` with optional `BinaryOperation` holds against the
+supplied stat(s), for example, in the case of the single stat, validating that the team's number of touchdowns exceeded 2 at the end of the first quarter, or,
+in the case of two stats, validating that the scores difference exceeded 2--see the public repository for on-chain examples: https://github.com/txodds/tx-on-chain.
+
+## Query Parameters
+
+<ParamField query="fixtureId" type="int32" required>
+  The ID of the fixture for the scores event.
+</ParamField>
+
+<ParamField query="seq" type="int32" required>
+  The sequence number of the specific scores event within the fixture's history.
+</ParamField>
+
+<ParamField query="statKey" type="int32" required>
+  The key identifying the specific statistic to validate (e.g., 1 for 'Participant1_Score').
+</ParamField>
+
+<ParamField query="statKey2" type="int32">
+  The key identifying an optional second statistic to validate for two-stat predicates.
+</ParamField>
+
+## Response
+
+<ResponseField name="scoresEvent" type="Scores">
+  The scores event record being validated
+</ResponseField>
+
+<ResponseField name="stat1" type="object">
+  First statistic details including key, value, and proof
+</ResponseField>
+
+<ResponseField name="stat2" type="object">
+  Optional second statistic details (only if statKey2 was provided)
+</ResponseField>
+
+<ResponseField name="eventSubTreeProof" type="array">
+  Merkle proof connecting the stats to the event root
+</ResponseField>
+
+<ResponseField name="fixtureSubTreeProof" type="array">
+  Merkle proof connecting the event to the fixture summary root
+</ResponseField>
+
+<ResponseField name="batchMainTreeProof" type="array">
+  Merkle proof connecting the fixture summary to the batch root
+</ResponseField>
+
+<ResponseField name="fixtureSummary" type="object">
+  Summary information about the fixture's score updates
+</ResponseField>
+
+<ResponseField name="batchMetadata" type="object">
+  Metadata about the batch containing this scores event
+</ResponseField>

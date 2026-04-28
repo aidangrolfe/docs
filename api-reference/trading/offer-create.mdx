@@ -1,0 +1,73 @@
+---
+title: "Submit a new, signed trade offer"
+api: "POST /trading/offer"
+description: "Submit a new, signed trade offer"
+---
+
+Allows an authenticated user to propose a new trade. The payload must contain the full `offer` object and a valid Ed25519 `signature`.
+
+The server will verify that the `signature` is a valid signature of the Borsh-serialized `offer` data, signed by the `traderPubkey` specified within the offer.
+
+The server also soft-checks that the token balance available in the user token account is sufficient to cover the stake.
+
+Once validated, the offer is broadcast on the real-time stream.
+
+## Request Body
+
+The trade offer terms plus their cryptographic Base58-encoded signature.
+
+<ParamField body="offer" type="Offer" required>
+  The complete offer object containing trade terms
+</ParamField>
+
+<ParamField body="signature" type="string" required>
+  Base58-encoded Ed25519 signature of the Borsh-serialized offer
+</ParamField>
+
+### Offer Object
+
+<ParamField body="offer.fixtureId" type="int64" required>
+  Fixture identifier for the trade
+</ParamField>
+
+<ParamField body="offer.period" type="int32" required>
+  Period of the game (e.g., 1 for first quarter, 0 for full game)
+</ParamField>
+
+<ParamField body="offer.predicate" type="Predicate" required>
+  The predicate defining the condition (EqualTo, GreaterThan, LessThan)
+</ParamField>
+
+<ParamField body="offer.statA" type="StatTerm" required>
+  First statistic term in the predicate
+</ParamField>
+
+<ParamField body="offer.statB" type="StatTerm">
+  Optional second statistic term (for two-stat predicates)
+</ParamField>
+
+<ParamField body="offer.binaryOp" type="BinaryOp">
+  Optional binary operation (Add, Subtract) for combining stats
+</ParamField>
+
+<ParamField body="offer.stake" type="int64" required>
+  Stake amount in tokens
+</ParamField>
+
+<ParamField body="offer.odds" type="int32" required>
+  Odds for the trade (decimal odds multiplied by 100, e.g., 200 for 2.00)
+</ParamField>
+
+<ParamField body="offer.expiration" type="int64" required>
+  Expiration timestamp for the offer
+</ParamField>
+
+<ParamField body="offer.traderPubkey" type="string" required>
+  Public key of the trader creating the offer
+</ParamField>
+
+## Response
+
+<ResponseField name="offerId" type="int32">
+  The ID of the successfully created offer
+</ResponseField>

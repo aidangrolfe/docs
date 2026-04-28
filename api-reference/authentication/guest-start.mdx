@@ -1,0 +1,19 @@
+---
+title: "Start a new guest session"
+api: "POST /guest/start"
+description: "Start a new guest session"
+---
+
+Initiates a new, anonymous guest session and returns a short-lived JSON Web Token (JWT).
+This token must be provided as a Bearer token in the Authorization header for subsequent calls,
+such as the token activation endpoint.
+
+## Response
+
+<ResponseField name="token" type="string">
+  A short-lived JWT for the guest session
+</ResponseField>
+
+<ResponseField name="expiresAt" type="int64">
+  Token expiration timestamp
+</ResponseField>

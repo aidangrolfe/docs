@@ -1,0 +1,28 @@
+---
+title: "Extend the validity of an existing API token"
+api: "POST /token/extend/{newEndTs}"
+description: "Extend the validity of an existing API token"
+---
+
+This endpoint allows a user to extend their current subscription by updating the expiry timestamp on-chain and off-chain.
+
+It performs the following actions:
+1. Validates that the requested `newEndTs` is valid (in the future, greater than current expiry, and within the 1-year limit).
+2. Calls the `extend_subscription` instruction on the Solana blockchain to update the user's stake account.
+3. Upon on-chain success, updates the `end_ts` of the API token in the off-chain database.
+
+The user continues to use their existing API token; only its validity period is updated.
+
+## Path Parameters
+
+<ParamField path="newEndTs" type="int64" required>
+  The new subscription end timestamp (in seconds) requested by the user.
+</ParamField>
+
+## Response
+
+<ResponseField name="message" type="string">
+  Success message indicating the subscription has been extended.
+
+  Example: `Subscription extended successfully.`
+</ResponseField>

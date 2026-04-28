@@ -1,0 +1,50 @@
+---
+title: "Get a Merkle proof for an entire hourly batch of fixtures"
+api: "GET /fixtures/batch-validation"
+description: "Get a Merkle proof for an entire hourly batch of fixtures"
+---
+
+Fixture data is grouped into hourly batches. Each batch is represented by a Merkle Tree, and its root hash is published on-chain.
+This Merkle root is contained within the batch's metadata.
+
+This endpoint allows you to validate the integrity of the batch metadata itself. It returns the metadata for the specified hourly batch, along with a Merkle proof.
+
+A user can take this proof and the metadata (which includes the final Merkle root) and use it to verify against a higher-level tree or commitment, thus cryptographically proving the integrity of the entire batch's claimed state.
+
+## Query Parameters
+
+<ParamField query="epochDay" type="integer" required>
+  The day since the Unix epoch for the desired batch.
+</ParamField>
+
+<ParamField query="hourOfDay" type="integer" required>
+  The hour of the day (UTC, 0-23) for the desired batch.
+</ParamField>
+
+## Response
+
+<ResponseField name="metadata" type="BatchMetadata">
+  Metadata for the hourly batch
+</ResponseField>
+
+<ResponseField name="proof" type="array">
+  Merkle proof nodes for validating the batch
+</ResponseField>
+
+### BatchMetadata Object
+
+<ResponseField name="totalUpdateCount" type="int32">
+  Total number of updates in the batch
+</ResponseField>
+
+<ResponseField name="numUniqueFixtures" type="int32">
+  Number of unique fixtures in the batch
+</ResponseField>
+
+<ResponseField name="overallBatchStartTs" type="int64">
+  Start timestamp of the batch
+</ResponseField>
+
+<ResponseField name="overallBatchEndTs" type="int64">
+  End timestamp of the batch
+</ResponseField>

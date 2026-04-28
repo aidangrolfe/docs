@@ -1,0 +1,83 @@
+---
+title: "Get odds updates from a specific historical 5-minute interval"
+api: "GET /odds/updates/{epochDay}/{hourOfDay}/{interval}"
+description: "Get a json array of all odd updates from a specific historical 5-minute interval"
+---
+
+Get a json array of all odd updates from a specific historical 5-minute interval.
+
+## Path Parameters
+
+<ParamField path="epochDay" type="integer" required>
+  The day since the Unix epoch
+</ParamField>
+
+<ParamField path="hourOfDay" type="integer" required>
+  The hour of the day (0-23)
+</ParamField>
+
+<ParamField path="interval" type="integer" required>
+  The 0-indexed 5-minute interval within the hour (0-11)
+</ParamField>
+
+## Query Parameters
+
+<ParamField query="fixtureId" type="int64">
+  Optional filter by fixture ID
+</ParamField>
+
+## Response
+
+<ResponseField name="data" type="array<Odds>">
+  Array of Odds objects from the specified time interval
+</ResponseField>
+
+### Odds Object
+
+<ResponseField name="FixtureId" type="int64">
+  Fixture identifier
+</ResponseField>
+
+<ResponseField name="MessageId" type="string">
+  Unique message identifier for the odds update
+</ResponseField>
+
+<ResponseField name="Ts" type="int64">
+  Timestamp of the odds update
+</ResponseField>
+
+<ResponseField name="Bookmaker" type="string">
+  Bookmaker name
+</ResponseField>
+
+<ResponseField name="BookmakerId" type="int32">
+  Bookmaker identifier
+</ResponseField>
+
+<ResponseField name="SuperOddsType" type="string">
+  Type of odds market
+</ResponseField>
+
+<ResponseField name="GameState" type="string">
+  Current state of the game
+</ResponseField>
+
+<ResponseField name="InRunning" type="boolean">
+  Indicates if the fixture is currently in play
+</ResponseField>
+
+<ResponseField name="MarketParameters" type="string">
+  Parameters for the market (e.g., handicap, total)
+</ResponseField>
+
+<ResponseField name="MarketPeriod" type="string">
+  Period the market applies to
+</ResponseField>
+
+<ResponseField name="PriceNames" type="array<string>">
+  Names of the prices/outcomes
+</ResponseField>
+
+<ResponseField name="Prices" type="array<int32>">
+  Odds values for each outcome
+</ResponseField>

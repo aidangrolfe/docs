@@ -1,0 +1,61 @@
+---
+title: "Get all active trading offers"
+api: "GET /trading/offers"
+description: "Get all active trading offers, optionally filtered by fixture ID"
+---
+
+Returns a JSON array of all active trading offers. Can be optionally filtered by a fixture ID.
+
+## Query Parameters
+
+<ParamField query="fixtureId" type="int32">
+  If provided, filters the active offers to a single fixture ID.
+</ParamField>
+
+## Response
+
+<ResponseField name="data" type="array<Offer>">
+  Array of active Offer objects
+</ResponseField>
+
+### Offer Object
+
+<ResponseField name="fixtureId" type="int64">
+  Fixture identifier for the trade
+</ResponseField>
+
+<ResponseField name="period" type="int32">
+  Period of the game (e.g., 1 for first quarter, 0 for full game)
+</ResponseField>
+
+<ResponseField name="predicate" type="Predicate">
+  The predicate defining the condition (EqualTo, GreaterThan, LessThan)
+</ResponseField>
+
+<ResponseField name="statA" type="StatTerm">
+  First statistic term in the predicate
+</ResponseField>
+
+<ResponseField name="statB" type="StatTerm">
+  Optional second statistic term (for two-stat predicates)
+</ResponseField>
+
+<ResponseField name="binaryOp" type="BinaryOp">
+  Optional binary operation (Add, Subtract) for combining stats
+</ResponseField>
+
+<ResponseField name="stake" type="int64">
+  Stake amount in tokens
+</ResponseField>
+
+<ResponseField name="odds" type="int32">
+  Odds for the trade (decimal odds multiplied by 100, e.g., 200 for 2.00)
+</ResponseField>
+
+<ResponseField name="expiration" type="int64">
+  Expiration timestamp for the offer
+</ResponseField>
+
+<ResponseField name="traderPubkey" type="string">
+  Public key of the trader who created the offer
+</ResponseField>

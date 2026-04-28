@@ -1,0 +1,43 @@
+---
+title: "Get the full sequence of score updates for a single fixture"
+api: "GET /scores/updates/{fixtureId}"
+description: "Get the full sequence of score updates for a single fixture"
+---
+
+Return a json array of all score updates for a single fixture including the current 5-minute interval.
+
+## Path Parameters
+
+<ParamField path="fixtureId" type="int64" required>
+  The ID of the fixture to retrieve all updates for
+</ParamField>
+
+## Response
+
+<ResponseField name="data" type="array<Scores>">
+  Array of all Scores objects for the fixture
+</ResponseField>
+
+### Scores Object
+
+The Scores object contains detailed information about score events and statistics for a fixture. The structure varies by sport type (Basketball, Football, etc.) and includes:
+
+<ResponseField name="FixtureId" type="int64">
+  Fixture identifier
+</ResponseField>
+
+<ResponseField name="Seq" type="int32">
+  Sequence number of the score event
+</ResponseField>
+
+<ResponseField name="Ts" type="int64">
+  Timestamp of the score event
+</ResponseField>
+
+<ResponseField name="Stats" type="object">
+  Map of statistical keys to their values
+</ResponseField>
+
+<ResponseField name="Sport" type="string">
+  Sport type (Basketball, UsFootball, etc.)
+</ResponseField>

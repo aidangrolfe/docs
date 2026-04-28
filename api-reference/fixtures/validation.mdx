@@ -1,0 +1,39 @@
+---
+title: "Get a Merkle proof for a specific fixture update"
+api: "GET /fixtures/validation"
+description: "Get a Merkle proof for a specific fixture update"
+---
+
+Each fixture returned or referenced in the TxODDS Oracle API is part of an hourly batch of fixture updates.
+Blockchain holds the Merkle root (ultimate cryptographic containment proof) of each fixture belonging to that batch.
+This endpoint returns the Merkle proof, i.e., the hashes along the branch of the Merkle tree for the batch up to but not inclusive of that Merkle root.
+The user can then call on-chain validation directly to get a cryptographic validation that a given fixture update was published
+by TxODDS as confirmed by the published Merkle root. This on-chain transaction requires the fixture record and the Merkle proof returned here.
+
+## Query Parameters
+
+<ParamField query="fixtureId" type="int64" required>
+  The ID of the fixture to validate.
+</ParamField>
+
+<ParamField query="timestamp" type="int64">
+  Optional. A Unix timestamp (ms) to get the validation proof for a specific point in time. Defaults to now.
+</ParamField>
+
+## Response
+
+<ResponseField name="snapshot" type="Fixture">
+  The fixture snapshot data
+</ResponseField>
+
+<ResponseField name="summary" type="FixtureBatchSummary">
+  Summary information about the fixture batch
+</ResponseField>
+
+<ResponseField name="subTreeProof" type="array">
+  Merkle proof nodes for the sub-tree
+</ResponseField>
+
+<ResponseField name="mainTreeProof" type="array">
+  Merkle proof nodes for the main tree
+</ResponseField>

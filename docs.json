@@ -8,7 +8,6 @@
     "dark": "#15803D"
   },
   "favicon": "/favicon.svg",
-  "openapi": ["openapi.yaml"],
   "navigation": {
     "tabs": [
       {
@@ -60,52 +59,52 @@
           {
             "group": "Authentication",
             "pages": [
-              "POST /guest/start",
-              "GET /token/activate",
-              "POST /token/extend/{newEndTs}"
+              "api-reference/authentication/guest-start",
+              "api-reference/authentication/token-activate",
+              "api-reference/authentication/token-extend"
             ]
           },
           {
             "group": "Fixtures",
             "pages": [
-              "GET /guest/fixtures/snapshot",
-              "GET /fixtures/snapshot",
-              "GET /fixtures/updates/{epochDay}/{hourOfDay}",
-              "GET /fixtures/validation",
-              "GET /fixtures/batch-validation"
+              "api-reference/fixtures/guest-snapshot",
+              "api-reference/fixtures/snapshot",
+              "api-reference/fixtures/updates",
+              "api-reference/fixtures/validation",
+              "api-reference/fixtures/batch-validation"
             ]
           },
           {
             "group": "Odds",
             "pages": [
-              "GET /guest/odds/snapshot/{fixtureId}",
-              "GET /guest/odds/stream",
-              "GET /odds/snapshot/{fixtureId}",
-              "GET /odds/updates/{fixtureId}",
-              "GET /odds/updates/{epochDay}/{hourOfDay}/{interval}",
-              "GET /odds/stream",
-              "GET /odds/validation"
+              "api-reference/odds/guest-snapshot",
+              "api-reference/odds/guest-stream",
+              "api-reference/odds/snapshot",
+              "api-reference/odds/updates-by-fixture",
+              "api-reference/odds/updates-by-time",
+              "api-reference/odds/stream",
+              "api-reference/odds/validation"
             ]
           },
           {
             "group": "Scores",
             "pages": [
-              "GET /scores/snapshot/{fixtureId}",
-              "GET /scores/updates/{fixtureId}",
-              "GET /scores/updates/{epochDay}/{hourOfDay}/{interval}",
-              "GET /scores/stream",
-              "GET /scores/stat-validation"
+              "api-reference/scores/snapshot",
+              "api-reference/scores/updates-by-fixture",
+              "api-reference/scores/updates-by-time",
+              "api-reference/scores/stream",
+              "api-reference/scores/stat-validation"
             ]
           },
           {
             "group": "Trading",
             "pages": [
-              "POST /trading/offer",
-              "POST /trading/accept",
-              "POST /trading/sign",
-              "GET /trading/stream",
-              "GET /trading/offer",
-              "POST /trading/offer/cancel"
+              "api-reference/trading/offer-create",
+              "api-reference/trading/accept",
+              "api-reference/trading/sign",
+              "api-reference/trading/stream",
+              "api-reference/trading/offer-get",
+              "api-reference/trading/offer-cancel"
             ]
           }
         ]
