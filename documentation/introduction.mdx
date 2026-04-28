@@ -1,97 +1,55 @@
 ---
 title: "Introduction"
-description: "Welcome to the new home for your documentation"
+description: "TxODDS Oracle - Hybrid on-chain/off-chain sports data and validation system"
 ---
 
-## Setting up
+## Overview
 
-Get your documentation site up and running in minutes.
+TxODDS Oracle (TxLINE) is a hybrid Solana on-chain and TxODDS hosted off-chain system that provides cryptographically verifiable sports data with on-chain validation.
 
-<Card
-  title="Start here"
-  icon="rocket"
-  href="/quickstart"
-  horizontal
->
-  Follow our three step quickstart guide.
-</Card>
+### Key Features
 
-## Make it yours
+**Data Access Layer**: Proprietary TxODDS data available for funded blockchain users through time-limited API tokens linked to on-chain subscription transactions.
 
-Design a docs site that looks great and empowers your users.
+- Data is canonicalized so all fixtures, odds, and scores are provably unique
+- On-chain validation using cryptographic proofs based on Merkle roots
+- Delivered in request-response or streaming form
+- One-week subscriptions secured through cryptographic protocol
 
-<Columns cols={2}>
-  <Card
-    title="Edit locally"
-    icon="pen-to-square"
-    href="/development"
-  >
-    Edit your docs locally and preview them in real time.
-  </Card>
-  <Card
-    title="Customize your site"
-    icon="palette"
-    href="/essentials/settings"
-  >
-    Customize the design and colors of your site to match your brand.
-  </Card>
-    <Card
-    title="Set up navigation"
-    icon="map"
-    href="/essentials/navigation"
-  >
-    Organize your docs to help users find what they need and succeed with your product.
-  </Card>
-  <Card
-    title="API documentation"
-    icon="terminal"
-    href="/api-reference/introduction"
-  >
-    Auto-generate API documentation from OpenAPI specifications.
-  </Card>
-</Columns>
+**Data Channels**:
+- **Fixtures**: Snapshots and updates whenever fixture metadata changes
+- **Odds**: TxODDS stable de-margined prices for extensive sports coverage
+- **Scores**: Fully detailed play-by-play data for US College Football and Basketball
 
-## Create beautiful pages
+### How It Works
 
-Everything you need to create world-class documentation.
+Data is distributed in real-time to paying blockchain customers via request-response or streaming. Simultaneously, batches accumulated over time intervals (5 minutes for odds/scores, 1 hour for fixtures) are cryptographically signed with Merkle roots published on-chain in perpetuity.
 
-<Columns cols={2}>
-  <Card
-    title="Write with MDX"
-    icon="pen-fancy"
-    href="/essentials/markdown"
-  >
-    Use MDX to style your docs pages.
-  </Card>
-  <Card
-    title="Code samples"
-    icon="code"
-    href="/essentials/code"
-  >
-    Add sample code to demonstrate how to use your product.
-  </Card>
-  <Card
-    title="Images"
-    icon="image"
-    href="/essentials/images"
-  >
-    Display images and other media.
-  </Card>
-  <Card
-    title="Reusable snippets"
-    icon="recycle"
-    href="/essentials/reusable-snippets"
-  >
-    Write once and reuse across your docs.
-  </Card>
-</Columns>
+The `txoracle` Solana program enables cryptographic verification that any published data was genuinely contained in the referenced batch, providing mathematical certainty of data authenticity.
 
-## Need inspiration?
+### Configurations
 
-<Card
-  title="See complete examples"
-  icon="stars"
-  href="https://mintlify.com/customers"
->
-  Browse our showcase of exceptional documentation sites.
-</Card>
+<Tabs>
+  <Tab title="Solana MainNet">
+    Production environment with live matches and low-latency delivery.
+
+    ```
+    API: https://oracle.txodds.com/api/
+    Program ID: 9ExbZjAapQww1vfcisDmrngPinHTEfpjYRWMunJgcKaA
+    Token Mint: sLX1i9dfmsuyFBmJTWuGjjRmG4VPWYK6dRRKSM4BCSx
+    ```
+  </Tab>
+  <Tab title="Solana DevNet">
+    Integration testing environment with match re-runs.
+
+    ```
+    API: https://oracle-dev.txodds.com/api/
+    Program ID: 6pW64gN1s2uqjHkn1unFeEjAwJkPGHoppGvS715wyP2J
+    Token Mint: GYdhNurtx2EgiTPRHVGuFWKHPycdpUqgedVkwEVUWVTC
+    ```
+  </Tab>
+</Tabs>
+
+## Get Started
+
+Follow the [Quickstart Guide](/documentation/quickstart) to begin accessing the TxODDS Oracle API.

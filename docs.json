@@ -21,13 +21,38 @@
             "pages": [
               "documentation/introduction",
               "documentation/quickstart",
-              "documentation/development"
+              "documentation/subscription-tiers"
             ]
+          },
+          {
+            "group": "Odds",
+            "pages": [
+              "documentation/odds/odds-overview",
+              "documentation/odds/odds-coverage"
+            ]
+          },
+          {
+            "group": "Scores",
+            "pages": [
+              "documentation/scores/football-feed",
+              "documentation/scores/basketball-feed"
+            ]
+          },
+          {
+            "group": "Reference",
+            "pages": [
+              "documentation/reference/data-specifications",
+              "documentation/reference/idls"
+            ]
+          },
+          {
+            "group": "Examples",
+            "pages": []
           },
           {
             "group": "Legal",
             "pages": [
-              "documentation/terms-and-conditions"
+              "documentation/legal/terms-and-conditions"
             ]
           }
         ]
