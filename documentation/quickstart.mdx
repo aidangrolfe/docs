@@ -3,17 +3,13 @@ title: "Quickstart"
 description: "Get started with the TxODDS Oracle API in minutes"
 ---
 
-## Fund Your Solana Account
+## Fund Your Solana Account (Optional)
 
-Before you can access the TxODDS Oracle API, you need to have USDT in your Solana wallet. Use the bridge below to transfer USDT to Solana:
+Before you can access the TxODDS Oracle API, you need to have USDT in your Solana wallet. If you already have USDT on Solana, you can skip this step.
 
-<div style={{ margin: 0, padding: 0, lineHeight: 0 }}>
-  <iframe
-    src="https://address.rhino.fi/?apiKey=INSERT_API_KEY&chainIn=BASE&chainOut=ETHEREUM&recipient=0x000000000000000000000000000000000000dead&token=USDT"
-    style={{ width: '400px', height: '581px', border: 'none', display: 'block', margin: 0, padding: 0 }}
-    scrolling="no"
-  />
-</div>
+import { WalletConnector } from "/snippets/wallet-connector.jsx"
+
+<WalletConnector />
 
 ## Purchase Subscription Tokens
 

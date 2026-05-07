@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@rhino.fi/sdk": "^1.12.4"
+  }
+}
