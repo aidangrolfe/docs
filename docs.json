@@ -3,8 +3,8 @@
   "theme": "mint",
   "name": "TxLine Documentation",
   "colors": {
-    "primary": "#27d0e2",
-    "light": "#27d0e2",
+    "primary": "#FF5723",
+    "light": "#FF5723",
     "dark": "#FF5723"
   },
   "favicon": "/favicon.svg",
