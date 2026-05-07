@@ -4,7 +4,7 @@ api: "GET /scores/stat-validation"
 description: "Get a three-stage Merkle proof for a single score statistic"
 ---
 
-This endpoint provides a deep cryptographic proof for one or two statistics within a single scores update. The TxODDS Oracle's data is structured in a three-level Merkle hierarchy:
+This endpoint provides a deep cryptographic proof for one or two statistics within a single scores update. The TxLINE's data is structured in a three-level Merkle hierarchy:
 
 1. A main batch contains summaries for multiple fixtures.
 2. Each fixture summary is the root of a sub-tree of all score update events for that fixture.
