@@ -69,7 +69,7 @@ export const WalletConnector = () => {
   }
 
   const iframeUrl = solanaAddress
-    ? `https://address.rhino.fi/?apiKey=pk_prod_3a4c5ef11a99bec8b3a8d4ed1efa3b23ab92c5d72cef4c0caf1e5e2c1b8c2c8e&chainIn=${selectedChain}&chainOut=SOLANA&recipient=${encodeURIComponent(solanaAddress)}&token=USDT`
+    ? `https://address.rhino.fi/?apiKey=PUBLIC-f585eac1-c9df-46a7-b29a-3b4f01e188f4&chainIn=${selectedChain}&chainOut=SOLANA&recipient=${encodeURIComponent(solanaAddress)}&tokenOut=USDT`
     : null
 
   return (
