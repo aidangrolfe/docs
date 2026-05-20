@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "TxLine Documentation",
+  "name": "TxLINE Documentation",
   "colors": {
     "primary": "#FF5723",
     "light": "#FF5723",
