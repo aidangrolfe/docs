@@ -143,5 +143,8 @@
   },
   "background": {
     "decoration": "grid"
+  },
+  "appearance": {
+    "default": "system"
   }
 }
