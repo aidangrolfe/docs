@@ -140,5 +140,8 @@
       "github": "https://github.com/txodds",
       "linkedin": "https://linkedin.com/company/txodds"
     }
+  },
+  "background": {
+    "decoration": "gradient"
   }
 }
